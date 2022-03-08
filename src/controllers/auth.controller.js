@@ -11,6 +11,20 @@ export const signup_post = async (req, res) => {
 };
 
 export const login_post = async (req, res) => {
-    console.log(req.body);
-    
+    const {password, email} = req.body;
+
+    let user = await User.findOne({email});
+    if(!user) return res.status(401).json({success: false, message: "Invalid email or password"});
+    const isPasswordValid = await verify(user.password, password);
+    if(!isPasswordValid) return res.status(401).json({success: false, message: "Invalid email or password"});
+
+    const {_id, firstName, lastName} = user;
+    const token = signToken(JSON.stringify({_id,firstName, lastName, email: user.email}));
+    return res.status(200).json({success: true, message:"successfully logged in", token})
 };
+export const userProfile = (req, res) => {
+    const bearerToken = req.headers.authorization;
+    const token = bearerToken.split(" ")[1];
+    const payload = decodeToken(token);
+    return res.status(200).json({success: true, data: payload});
+}
