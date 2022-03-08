@@ -19,7 +19,7 @@ export const getById = async (req, res) => {
 export const updateBlog = async(req, res) => {
     const {id} = req.params;
     const updates = req.body;
-    const blog = await Task.findById(id);
+    const blog = await Blog.findById(id);
     if(!blog) return res.status(404).json({success: false, message: "blog not found"}) ;
     await Blog.findByIdAndUpdate(id, updates);
     res.status(200).json({success: true, message: "Blog updated successfully"})
