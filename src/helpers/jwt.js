@@ -10,3 +10,7 @@ export const signToken = (payload) => {
 export const decodeToken = (token) => {
     return jwt.decode(token, private_key);
 }
+
+//export const verifyToken = (token) => {
+//    return jwt.verify(token, private_key);
+//}

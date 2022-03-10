@@ -10,6 +10,7 @@
     "@babel/core": "^7.17.5",
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.11",
+    "@hapi/joi": "^17.1.1",
     "argon2": "^0.28.5",
     "dotenv-cli": "^5.0.0",
     "express": "^4.17.3",
@@ -18,7 +19,7 @@
   },
   "scripts": {
     "start:dev": "nodemon --exec babel-node src/index.js",
-    "start": "node dist/index.js",
+    "start": "babel-node src/index.js",
     "build": "babel src --out-dir dist"
   },
   "devDependencies": {
