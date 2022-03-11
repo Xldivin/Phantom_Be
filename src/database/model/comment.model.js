@@ -1,12 +1,11 @@
-//import { string } from "@hapi/joi";
 import mongoose from "mongoose";
 
-const QuerySchema = new mongoose.Schema({
+const CommentSchema = new mongoose.Schema({
     Name: {
         type: String,
         required: true
     },
-    Message: {
+    Comment: {
         type: String,
         required: true
     },
@@ -15,5 +14,5 @@ const QuerySchema = new mongoose.Schema({
         default: new Date()
     }
 });
-const Query = mongoose.model('Query', QuerySchema);
-export default Query;
+const Comment = mongoose.model('Comment', CommentSchema);
+export default Comment;
