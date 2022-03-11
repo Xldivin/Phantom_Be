@@ -1,12 +1,22 @@
 import Blog from "../database/model/blog.model";
 import { blogValidation } from "../helpers/validation";
+import { fileUpload } from "../helpers/multer";
 
 export const saveBlog  = async (req, res) => {
     const {error} = blogValidation(req.body);
     if(error){
         return res.status(400).json({message: error.details[0].message})
     }
-    const blog = req.body;
+    if (req.file) {
+        req.body.image = await fileUpload(req);
+    } else {
+        req.body.image =
+            "https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
+    }
+    const blog = {
+        title: req.body.title,
+        message: req.body.message,
+        image: req.body.image};
     const newBlog = new Blog(blog);
     await newBlog.save();
     res.status(201).json({status: "success", data: newBlog});

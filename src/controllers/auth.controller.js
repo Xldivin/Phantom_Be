@@ -10,10 +10,10 @@ export const signup_post = async (req, res) => {
         return res.status(400).json({message: error.details[0].message})
     }
     user.password = await hash(user.password);
-    //const usermail = await User.find(User.email);
-    //if(usermail){
-    //    return res.status(409).send("user already in, please login");
-    //}
+    const usermail = await User.findOne({email: req.body.email});
+    if(usermail){
+        return res.status(409).send("user already in, please login");
+    }
     const newUser = await new User(user);
     newUser.save();
     res.status(201).json({status:"success", data: newUser});

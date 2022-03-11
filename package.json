@@ -1,8 +1,8 @@
 {
-  "name": "API-Frontend",
+  "name": "api-backend",
   "version": "1.0.0",
   "description": "this is the API for frontend",
-  "main": "index.js",
+  "main": "src/index.js",
   "author": "xldivin@gmail.com",
   "license": "MIT",
   "dependencies": {
@@ -12,10 +12,12 @@
     "@babel/preset-env": "^7.16.11",
     "@hapi/joi": "^17.1.1",
     "argon2": "^0.28.5",
+    "cloudinary": "^1.28.1",
     "dotenv-cli": "^5.0.0",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.2.4"
+    "mongoose": "^6.2.4",
+    "multer": "^1.4.4"
   },
   "scripts": {
     "start:dev": "nodemon --exec babel-node src/index.js",
