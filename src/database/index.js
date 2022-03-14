@@ -1,6 +1,14 @@
 import mongoose from 'mongoose';
+import 'dotenv/config';
+const enviroment = process.env.NODE_ENV;
 
-mongoose.connect("mongodb+srv://Divin:axel123@cluster0.0yq1j.mongodb.net/Backend", {
+const dev_db_url = process.env.DEVELOPMENT_DB;
+const prod_db_url = process.env.PRODUCTION_DB;
+const test_db_url = process.env.TEST_DB;
+
+const connectionUrl = (enviroment=='dev') ? dev_db_url : (enviroment == 'prod') ? prod_db_url : test_db_url;
+console.log("env: "+enviroment+"  ---- url: "+connectionUrl)
+mongoose.connect(connectionUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

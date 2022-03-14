@@ -28,7 +28,7 @@ export const getById = async (req, res) => {
 export const deleteCommentById = async(req, res) => {
     const {id} = req.params;
     const comment = await Comment.findById(id);
-    if(!comment) return res.status(404).json({success: false, message: "comment not found"});
+    if(!comment) return res.status(404).json({status: "fail", message: "comment not found"});
     await Comment.findByIdAndDelete(id);
     res.status(200).json({status: "success", message: "comment deleted"});
 }

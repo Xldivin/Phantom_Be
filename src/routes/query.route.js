@@ -4,9 +4,9 @@ import { checkAuth, checkAdminAuth } from "../middleware/check-auth";
 
 const router = express.Router();
 
-router.post('/',checkAuth, saveQuery);
-router.get('/',checkAuth, getAllQuery);
-router.get('/:id',checkAuth, getById);
+router.post('/', saveQuery);
+router.get('/',checkAdminAuth, getAllQuery);
+router.get('/:id',checkAdminAuth, getById);
 router.delete('/:id',checkAdminAuth, deleteQueryById);
 
 export default router;
