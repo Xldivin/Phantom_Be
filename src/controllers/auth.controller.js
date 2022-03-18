@@ -21,9 +21,8 @@ export const signup_post = async (req, res) => {
 
 export const login_post = async (req, res) => {
     const {password, email} = req.body;
-
     let user = await User.findOne({email});
-    if(!user) return res.status(401).send("email is invalid");
+    if(!user) return res.status(401).json({status: "fail", message: "not in in "});
     const isPasswordValid = await verify(user.password, password);
     if(!isPasswordValid) return res.status(401).json({status: "fail", message: "wrong password"});
 

@@ -16,7 +16,14 @@ const Blogchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: new Date()
-    }
+    },
+    inquiry: [
+        {
+            name: { type: String, required: true},
+            inquiry: { type: String, required: true},
+            createdAt: { type: Date, default: new Date()}
+        }
+    ],
 });
 const Blog = mongoose.model('Blog', Blogchema);
 export default Blog;
