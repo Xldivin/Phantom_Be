@@ -5,7 +5,7 @@ import { checkAuth, checkAdminAuth } from "../middleware/check-auth";
 const router = express.Router();
 
 router.post('/', saveSubs);
-router.get('/',checkAdminAuth, getAllSubs);
+router.get('/', getAllSubs);
 router.delete('/',checkAdminAuth, unsubscribe);
 
 export default router;
