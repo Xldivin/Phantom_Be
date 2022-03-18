@@ -3,7 +3,6 @@ import { saveBlog, getAllBlog, getById, updateBlog, deleteBlogById,inquiryonBlog
 import { checkAuth, checkAdminAuth } from "../middleware/check-auth";
 import cloudinary from "../helpers/cloudinary";
 import multer from "multer";
-import { saveComment } from "../controllers/comment.controller";
 
 const storage = multer.diskStorage({});
 
