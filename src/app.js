@@ -11,11 +11,8 @@ import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import swaggerDoc from "./doc.json";
 const server = express();
-server.use(
-    cors({
-        origin: "http://127.0.0.1:5500",
-    }),
-);
+server.use(cors());
+server.use(morgan("dev"));
 
 server.get('/', (req, res) => {
     res.status(200).json({success: true, message: "hurray!! server is on"})
