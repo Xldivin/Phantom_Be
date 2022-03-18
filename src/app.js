@@ -13,7 +13,7 @@ import swaggerDoc from "./doc.json";
 const server = express();
 server.use(
     cors({
-        origin: "*",
+        origin: "http://127.0.0.1:5500",
     }),
 );
 
