@@ -11,6 +11,11 @@ import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import swaggerDoc from "./doc.json";
 const server = express();
+server.use(
+    cors({
+        origin: "*",
+    })
+);
 
 server.get('/', (req, res) => {
     res.status(200).json({success: true, message: "hurray!! server is on"})
@@ -24,9 +29,7 @@ server.use('/api/v1/subs', subRoutes);
 
 export default server;
 
-server.use(cors({
-    origin: "*",
-}));
+server.use(cors());
 server.use(morgan("dev"));
 server.use("/api/v1/", authRoutes);
 server.use(
