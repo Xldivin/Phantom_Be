@@ -5,7 +5,7 @@ import { login_post, signup_post, userProfile } from '../controllers/auth.contro
 const router = express.Router();
 
 router.post('/signup', signup_post);
-router.get('/login', login_post);
+router.post('/login', login_post);
 router.get('/user', userProfile);
 
 

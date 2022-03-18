@@ -42,7 +42,19 @@ export const updateBlog = async(req, res) => {
 export const deleteBlogById = async(req, res) => {
     const {id} = req.params;
     const blog = await Blog.findById(id);
-    if(!blog) return res.status(404).json({success: false, message: "Blog not found"});
+    if(!blog) return res.status(404).json({status: "fail", message: "Blog not found"});
     await Blog.findByIdAndDelete(id);
-    res.status(200).json({success: true, message:"Blog deleted", data: blog});
+    res.status(200).json({status: "success", message:"Blog deleted", data: blog});
+}
+export const inquiryonBlog = async(req, res) => {
+    const id = (req.params.id)
+    //console.log(id);
+    const inquiry = req.body;
+    //console.log(inquiry)
+    const blog = await Blog.findById(id);
+    if(!blog) return res.status(404).json({status: "fail", message: "blog not found"});
+    blog.inquiry.push(inquiry);
+    await Blog.findByIdAndUpdate(id, {inquiry});
+    blog.save();
+    res.status(201).json({status: "success", message: "inqiury added"});
 }

@@ -1,8 +1,9 @@
 import express from "express";
-import { saveBlog, getAllBlog, getById, updateBlog, deleteBlogById  } from "../controllers/blog.controller";
+import { saveBlog, getAllBlog, getById, updateBlog, deleteBlogById,inquiryonBlog  } from "../controllers/blog.controller";
 import { checkAuth, checkAdminAuth } from "../middleware/check-auth";
 import cloudinary from "../helpers/cloudinary";
 import multer from "multer";
+import { saveComment } from "../controllers/comment.controller";
 
 const storage = multer.diskStorage({});
 
@@ -30,10 +31,11 @@ const uploads = multer({ storage, fileFilter });
 
 const router = express.Router();
 
-router.post('/', uploads.single("image"), saveBlog);
-router.get('/',checkAuth, getAllBlog);
-router.get('/:id',checkAuth, getById);
+router.post('/', uploads.single("image"),checkAdminAuth, saveBlog);
+router.get('/', getAllBlog);
+router.get('/:id', getById);
 router.put('/:id',checkAdminAuth, updateBlog);
 router.delete('/:id',checkAdminAuth, deleteBlogById);
+router.put('/:id/inquiry',inquiryonBlog);
 
 export default router;

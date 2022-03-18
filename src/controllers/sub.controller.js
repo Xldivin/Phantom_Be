@@ -7,9 +7,13 @@ export const saveSubs  = async (req, res) => {
     if(error){
         return res.status(400).json({message: error.details[0].message})
     }
+    const usermail = await Subs.findOne({email: req.body.email});
+    if(usermail){
+        return res.status(409).json({ status: "fail", message: "email have been used"});
+    }
     const newSub = new Subs(sub);
     await newSub.save();
-    res.status(201).json({ success: true, message: "succesfully subscribed", data: newSub});
+    res.status(201).json({ status: "success", message: "succesfully subscribed", data: newSub});
 }
 export const getAllSubs = async (req, res) => {
     const sub = await Subs.find();
@@ -18,7 +22,7 @@ export const getAllSubs = async (req, res) => {
 export const unsubscribe = async (req, res) => {
     const sub = await Subs.findOne(Subs.email);
     //console.log(sub)
-    if (!sub) return res.status(404).json({ success: false, message: "User not found" });
+    if (!sub) return res.status(404).json({ status: success, message: "User not found" });
     await Subs.findOneAndDelete(sub);
-    res.status(200).json({ success: true, message: "Subscription Removed", data: null });
+    res.status(200).json({ status: "success", message: "Subscription Removed", data: null });
 }
