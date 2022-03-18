@@ -26,8 +26,8 @@ server.use('/api/v1/subs', subRoutes);
 
 export default server;
 
-server.use(cors());
-server.use(morgan("dev"));
+//server.use(cors());
+//server.use(morgan("dev"));
 server.use("/api/v1/", authRoutes);
 server.use(
     "/api-docs",
