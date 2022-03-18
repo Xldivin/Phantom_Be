@@ -24,7 +24,9 @@ server.use('/api/v1/subs', subRoutes);
 
 export default server;
 
-server.use(cors());
+server.use(cors({
+    origin: 'http://127.0.0.1:5500'
+}));
 server.use(morgan("dev"));
 server.use("/api/v1/", authRoutes);
 server.use(
