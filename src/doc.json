@@ -189,7 +189,7 @@
         }
     }
 },
-"/api/v1/auth/blog": {
+"/api/v1/blog": {
     "post": {
         "tags": ["BLOG"],
         "summary": "Upload of blogs",
@@ -230,9 +230,6 @@
         "summary": "Get all blogs",
         "description": "get all blogs",
         "operationId": "get all blogs",
-        "security": [{
-            "Bearer": []
-        }],
         "responses": {
             "201": {
                 "description": "get all blogs"

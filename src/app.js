@@ -24,11 +24,9 @@ server.use('/api/v1/blog', blogRoutes);
 server.use('/api/v1/auth', authRoutes);
 server.use('/api/v1/subs', subRoutes);
 
-export default server;
 
-//server.use(cors());
-//server.use(morgan("dev"));
-server.use("/api/v1/", authRoutes);
+
+server.use("/api/v1/", authRoutes,queryRoutes ,blogRoutes,subRoutes);
 server.use(
     "/api-docs",
     swaggerUi.serve,
@@ -39,3 +37,7 @@ server.use("*", (req, res, next) => {
         error: "NOT FOUND",
     });
 });
+
+export default server;
+
+
