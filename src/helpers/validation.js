@@ -21,7 +21,7 @@ export const queriesValidation = (query) => {
 export const blogValidation = (blog) => {
     const schema = joi.object({
         title: joi.string().min(5).required(),
-        message: joi.string().max(1000).required(),
+        descrption: joi.string().max(1000).required(),
         image: joi.string()
     });
     return schema.validate(blog);

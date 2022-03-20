@@ -5,7 +5,7 @@ const Blogchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    message: {
+    descrption: {
         type: String,
         required: true
     },
@@ -17,10 +17,10 @@ const Blogchema = new mongoose.Schema({
         type: Date,
         default: new Date()
     },
-    inquiry: [
+    comment: [
         {
             name: { type: String, required: true},
-            inquiry: { type: String, required: true},
+            comment: { type: String, required: true},
             createdAt: { type: Date, default: new Date()}
         }
     ],

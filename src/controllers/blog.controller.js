@@ -15,7 +15,7 @@ export const saveBlog  = async (req, res) => {
     }
     const blog = {
         title: req.body.title,
-        message: req.body.message,
+        descrption: req.body.descrption,
         image: req.body.image};
     const newBlog = new Blog(blog);
     await newBlog.save();
@@ -46,15 +46,21 @@ export const deleteBlogById = async(req, res) => {
     await Blog.findByIdAndDelete(id);
     res.status(200).json({status: "success", message:"Blog deleted", data: blog});
 }
-export const inquiryonBlog = async(req, res) => {
+export const commentonBlog = async(req, res) => {
     const id = (req.params.id)
     //console.log(id);
-    const inquiry = req.body;
+    const comment = req.body;
     //console.log(inquiry)
     const blog = await Blog.findById(id);
     if(!blog) return res.status(404).json({status: "fail", message: "blog not found"});
-    blog.inquiry.push(inquiry);
-    await Blog.findByIdAndUpdate(id, {inquiry});
+    blog.comment.push(comment);
+    await Blog.findByIdAndUpdate(id, {comment});
     blog.save();
-    res.status(201).json({status: "success", message: "inqiury added"});
+    res.status(201).json({status: "success", message: "comment added"});
+}
+export const getAllComment = async (req, res) => {
+    const id = (req.params.id)
+    const blog = await Blog.findById(id);
+    const comments = blog.comment;
+    res.status(200).json({status: "success", data: comments})
 }
