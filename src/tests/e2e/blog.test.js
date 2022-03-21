@@ -30,7 +30,7 @@ describe('POST API /api/v1/auth/login', () => {
         })
         const blog = {
             title: "ATLP RWANDA",
-            message: "Andela Technical Leadership Program Rwanda",
+            descrption: "Andela Technical Leadership Program Rwanda",
             image: "Photo url"
 
         }
@@ -55,7 +55,7 @@ describe('POST API /api/v1/auth/login', () => {
         })
         const blog = {
             title: "ATLP RWANDA",
-            message: "Andela Technical Leadership Program Rwanda",
+            descrption: "Andela Technical Leadership Program Rwanda",
             image: "Photo url"
         }
         let blogId;
@@ -94,7 +94,7 @@ describe('POST API /api/v1/auth/login', () => {
         })
         const blog = {
             title: "ATLP RWANDA",
-            message: "Andela Technical Leadership Program Rwanda",
+            descrption: "Andela Technical Leadership Program Rwanda",
             image: "Photo url"
         }
         let blogId;
@@ -126,7 +126,7 @@ describe('POST API /api/v1/auth/login', () => {
         })
         const blog = {
             title: "ATLP RWANDA",
-            message: "Andela Technical Leadership Program Rwanda",
+            descrption: "Andela Technical Leadership Program Rwanda",
             image: "Photo url"
         }
         let blogId;

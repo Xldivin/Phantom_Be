@@ -17,7 +17,6 @@ describe('POST API /api/v1/subs', () => {
             .send(sub)
             .end((err, res) => {
                 if (err)return done(err);
-
                 expect(res).to.have.status([201]);
                 expect(res.body).to.haveOwnProperty('data')
                 return done();
