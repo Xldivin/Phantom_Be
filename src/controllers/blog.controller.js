@@ -64,3 +64,8 @@ export const getAllComment = async (req, res) => {
     const comments = blog.comment;
     res.status(200).json({status: "success", data: comments})
 }
+export const deleteComment = async (req,res) => {
+    const id = req.params.id;
+    const blog = await Blog.findById(id);
+    const comments = blog.comment;
+}
