@@ -1,5 +1,5 @@
 import express from "express";
-import { saveBlog, getAllBlog, getById, updateBlog, deleteBlogById,commentonBlog,getAllComment  } from "../controllers/blog.controller";
+import { saveBlog, getAllBlog, getById, updateBlog, deleteBlogById,commentonBlog,getAllComment,deleteComment  } from "../controllers/blog.controller";
 import { checkAuth, checkAdminAuth } from "../middleware/check-auth";
 import cloudinary from "../helpers/cloudinary";
 import multer from "multer";
@@ -37,5 +37,6 @@ router.put('/:id',checkAdminAuth, updateBlog);
 router.delete('/:id',checkAdminAuth, deleteBlogById);
 router.put('/:id/comment',checkAuth, commentonBlog);
 router.get('/:id/comments',checkAuth, getAllComment);
+router.delete('/:id/comments/:commentId', deleteComment);
 
 export default router;

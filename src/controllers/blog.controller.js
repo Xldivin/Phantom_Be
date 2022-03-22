@@ -11,7 +11,7 @@ export const saveBlog  = async (req, res) => {
         req.body.image = await fileUpload(req);
     } else {
         req.body.image =
-            "https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
+            "https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
     }
     const blog = {
         title: req.body.title,
@@ -64,8 +64,15 @@ export const getAllComment = async (req, res) => {
     const comments = blog.comment;
     res.status(200).json({status: "success", data: comments})
 }
-export const deleteComment = async (req,res) => {
-    const id = req.params.id;
+export const deleteComment = async (req, res) => {
+    const id = (req.params.id)
+    const commentId = req.params.commentId
     const blog = await Blog.findById(id);
-    const comments = blog.comment;
+    console.log(blog);
+    const comments = blog.comment.filter(c => c.id !== commentId);
+    blog.comment = comments
+    blog.save()
+    res.status(200).json({status: "success", data: blog});
 }
+
+

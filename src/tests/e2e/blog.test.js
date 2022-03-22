@@ -156,31 +156,22 @@ describe('POST API /api/v1/auth/login', () => {
                         })
                 });
         });
-
-        
-
-
+        it("should comment on an article", (done) => {
+            const commentToCreate = {
+                comment: " this is a good article i ever read",
+                name: "bigirimana",
+            };
+            chai
+                .request(app)
+                .put(`api/v1/blog/${blogId}/comment`)
+                .set("Authorization", `Bearer ${token}`)
+                .send(commentToCreate)
+                .end((err, res) => {
+                    expect(res.body.message).to.be.eql("rrrrrrrrrr");
+                    done();
+                });
+        });
     })
-
-
-
-    it("should comment on an article", (done) => {
-        const comment = {
-            inquiry: " this is a good article i ever read",
-            name: "bigirimana",
-        };
-        chai
-            .request(app)
-            blogId = res.body.data._id
-            .put("api/v1/blog/blogId/inquiry/")
-            console.log(id)
-            .set("Authorization", `Bearer ${token}`)
-            .send(comment)
-            .end((err, res) => {
-                expect(res.status).to.be.equal(201);
-                done();
-            });
-    });
     it("should fail to comment on an article", (done) => {
         const comment = {
             inquiry: " this is a good article i ever read",
