@@ -12,7 +12,7 @@ export const signup_post = async (req, res) => {
     user.password = await hash(user.password);
     const usermail = await User.findOne({email: req.body.email});
     if(usermail){
-        return res.status(409).json({status:"success", message: "user already in please login"});
+        return res.status(409).json({status:"fail", message: "user already in please login"});
     }
     const newUser = await new User(user);
     newUser.save();
