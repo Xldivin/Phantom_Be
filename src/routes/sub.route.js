@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.post('/', saveSubs);
 router.get('/', getAllSubs);
-router.delete('/',checkAdminAuth, unsubscribe);
+router.delete('/:id',checkAdminAuth, unsubscribe);
 
 export default router;

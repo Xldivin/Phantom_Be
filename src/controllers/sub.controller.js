@@ -20,9 +20,9 @@ export const getAllSubs = async (req, res) => {
     res.status(200).json({status: "success", data: sub})
 }
 export const unsubscribe = async (req, res) => {
-    const sub = await Subs.findOne(Subs.email);
-    //console.log(sub)
-    if (!sub) return res.status(404).json({ status: success, message: "User not found" });
+    const id = req.params._id;
+    const sub = await Subs.findOne({id});
+    if (!sub) return res.status(404).json({ status: "fail", message: "User not found" });
     await Subs.findOneAndDelete(sub);
     res.status(200).json({ status: "success", message: "Subscription Removed", data: null });
 }

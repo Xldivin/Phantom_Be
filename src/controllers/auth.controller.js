@@ -48,7 +48,7 @@ export const userProfile = (req, res) => {
 export const deleteUser = async (req, res) => {
     const id = req.params._id;
     const user = await User.findOne({ id})
-    if (!user) return res.status(404).json({ status: 404, message: "User not Found" });
+    if (!user) return res.status(404).json({ status: "fail", message: "User not Found" });
     await User.findOneAndDelete(user)
     res.status(200).json({ status: "success", message: "User deleted", data: null });
 }
