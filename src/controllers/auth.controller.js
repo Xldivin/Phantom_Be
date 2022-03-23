@@ -34,10 +34,21 @@ export const login_post = async (req, res) => {
     const token = signToken(JSON.stringify({_id,username,role, email: user.email,}));
     return res.status(200).json({status: "success", message:"successfully logged in", token, data:userdata})
 };
+export const getAllUsers = async (req, res) => {
+    const users = await User.find();
+    res.status(200).json({ success: true, data: users })
+}
 export const userProfile = (req, res) => {
     const bearerToken = req.headers.authorization;
     const token = bearerToken.split(" ")[1];
     const payload = decodeToken(token);
     console.log(payload.role);
     return res.status(200).json({status: "success", data: payload});
+}
+export const deleteUser = async (req, res) => {
+    const id = req.params._id;
+    const user = await User.findOne({ id})
+    if (!user) return res.status(404).json({ status: 404, message: "User not Found" });
+    await User.findOneAndDelete(user)
+    res.status(200).json({ status: "success", message: "User deleted", data: null });
 }
