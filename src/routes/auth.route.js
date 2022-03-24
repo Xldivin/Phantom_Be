@@ -1,5 +1,5 @@
 import express from "express";
-import { login_post, signup_post, userProfile,getAllUsers,deleteUser } from '../controllers/auth.controller';
+import { login_post, signup_post, userProfile,getAllUsers,deleteUser,updateUserProfile } from '../controllers/auth.controller';
 import { checkAuth, checkAdminAuth } from "../middleware/check-auth";
 
 
@@ -10,6 +10,7 @@ router.post('/login', login_post);
 router.get('/user', userProfile);
 router.get('/allusers',checkAdminAuth, getAllUsers);
 router.delete('/user/:id',checkAdminAuth, deleteUser);
+router.put('/user/:id',checkAuth, updateUserProfile);
 
 
 
