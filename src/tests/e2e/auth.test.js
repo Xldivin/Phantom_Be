@@ -25,7 +25,7 @@ chai.use(chaiHttp);
                 })
         });
 })
-describe('POST API /api/v1/authentication/login', () => {
+describe('POST API /api/v1/auth/login', () => {
     before(() => {
         mongoose.connection.dropCollection('login');
     })
@@ -42,11 +42,21 @@ describe('POST API /api/v1/authentication/login', () => {
                 if (err) return done(err)
                 token = res.body.token;
                 expect(res.status).to.be.equal(200);
-                expect(res.body).to.have.property("token");
                 return done();
             })
-    });
-    it('Should return 401 when email does not exists', (done) => {
+            
+        })
+        it("Should get all users", (done) => {
+            		chai
+            			.request(app)
+            			.get('/api/v1/auth/allUsers')
+                        .set("Authorization",`Bearer ${token}`)
+            			.end((err, res) => {
+            				expect(res.status).to.be.equal(200);
+            				done();
+            			});
+            	});
+                    it('Should return 401 when email does not exists', (done) => {
         const oldUser = user.email
         chai.request(app).get('/api/v1/auth/login')
             .send(user)
@@ -57,14 +67,13 @@ describe('POST API /api/v1/authentication/login', () => {
             })
     });
     it('Should return 401 when password is invalid', (done) => {
-        const oldUser = user.password
-        chai.request(app).post('/api/v1/auth/login')
-            .send(user)
-            .end((err, res) => {
-                if (oldUser) return done(err);
-                expect(res.status).to.be.equal(401)
-                return done();
-            })
-    });
-});
-
+                const oldUser = user.password
+                chai.request(app).post('/api/v1/auth/login')
+                    .send(user)
+                    .end((err, res) => {
+                        if (oldUser) return done(err);
+                        expect(res.status).to.be.equal(401)
+                        return done();
+                    })
+            });
+    })

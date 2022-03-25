@@ -9,7 +9,7 @@ describe('POST API /api/v1/subs', () => {
         mongoose.connection.dropCollection('subs');
     })
     const sub = {
-            "email": "xldivin@gmail.com"
+            "email": "RUXIBIZA@gmail.com"
         }
     it('it should subscribe and return 201', (done) => {
         chai.request(app)
@@ -17,11 +17,62 @@ describe('POST API /api/v1/subs', () => {
             .send(sub)
             .end((err, res) => {
                 if (err)return done(err);
-                expect(res).to.have.status([201]);
+                expect(res.status).to.be.equal(201);
+                return done();
+            })
+    });
+    const invalidEmail = {
+        "email": "axelgmail.com",
+    }
+
+    it('it should not send a subscription and return 400', (done) => {
+
+        chai.request(app)
+            .post('/api/v1/subs')
+            .send(invalidEmail)
+            .end((err, res) => {
+                if (err) return done(err)
+                expect(res.status).to.be.equal(400);
+                return done();
+            })
+    });
+    const oldSubscriber = {
+        "email": "RUXIBIZA@gmail.com"
+    }
+    it('it should return 400 when the user has already subscribed', (done) => {
+
+        chai.request(app)
+            .post('/api/v1/subs')
+            .send(oldSubscriber)
+            .end((err, res) => {
+                if (err) return done(err)
+                expect(res.status).to.be.equal(409);
+                return done();
+            })
+    });
+})
+describe('POST API /api/v1/auth/signup', () => {
+    before(() => {
+        mongoose.connection.dropCollection('users');
+    })
+    const user = {
+        "username": "shyaka",
+        "role": "admin",
+        "email": "xldivin@gmail.com",
+        "password": "123456"
+    }
+    it('it should save a user and return 201', (done) => {
+        chai.request(app)
+            .post('/api/v1/auth/signup')
+            .send(user)
+            .end((err, res) => {
+                if (err) return done(err)
+                expect(res.status).to.be.equal(201);
                 expect(res.body).to.haveOwnProperty('data')
                 return done();
             })
     });
+})
     describe('POST API /api/v1/auth/login', () => {
     before(() => {
         mongoose.connection.dropCollection('login');
@@ -76,4 +127,3 @@ chai.request(app)
 })
 });
 });
-})

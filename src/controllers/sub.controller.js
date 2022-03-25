@@ -13,7 +13,7 @@ export const saveSubs  = async (req, res) => {
     }
     const newSub = new Subs(sub);
     await newSub.save();
-    res.status(201).json({ status: "success", message: "succesfully subscribed", data: newSub});
+    res.status(201).json({ status: "success", message: "succesfully subscribed"});
 }
 export const getAllSubs = async (req, res) => {
     const sub = await Subs.find();

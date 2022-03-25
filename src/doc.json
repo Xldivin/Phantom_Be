@@ -143,7 +143,7 @@
         }]
     }
 },
-"/api/v1/qeury/{id}": {
+"/api/v1/query/{id}": {
     "get": {
         "tags": ["QUERY"],
         "summary": "Get Single Query",
@@ -312,7 +312,9 @@
                 "description": "subscription successfully added"
             }
         }
-    },
+    }
+},
+"/api/v1/subs/:id":{
     "delete": {
         "tags": ["SUBSCRIPTION"],
         "summary": "remove subscription",
@@ -322,13 +324,15 @@
             "Bearer": []
         }],
         "produces": ["application/json"],
-        "parameters": [{
-            "name": "email",
-            "in": "path",
-            "type": "string",
-            "description": "sub email",
-            "required": true
-        }],
+        "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "type": "string",
+                "description": "sub Id",
+                "required": true
+            }
+        ],
         "responses": {
             "201": {
                 "description": "remove subscription"
@@ -336,5 +340,6 @@
         }
     }
 }
+
 }
 }
