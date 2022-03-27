@@ -76,4 +76,31 @@ describe('POST API /api/v1/auth/login', () => {
                         return done();
                     })
             });
-    })
+
+            it("Should get user profile", (done) => {
+                chai
+                    .request(app)
+                    .get("/api/v1/auth/user")
+                    .set("Authorization",`Bearer ${token}`)
+                    .end((err, res) => {
+                        expect(res.status).to.be.equal(401);
+                        done();
+                    });
+        });
+        it("Should update profile", (done) => {
+            const updatableUser = {
+                username:"kamali",
+                email:"kamali@gmail.com",
+                password:"07899999"
+            };
+            chai
+                .request(app)
+                .put("/api/v1/auth/users")
+                .set("Authorization",`Bearer ${token}`)
+                .send(updatableUser)
+                .end((err, res) => {
+                    expect(res.status).to.be.equal(401);
+                    done();
+                });
+        });
+})

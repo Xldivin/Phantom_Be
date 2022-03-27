@@ -17,7 +17,7 @@ const Blogchema = new mongoose.Schema({
         type: Date,
         default: new Date()
     },
-    comment: [
+    comments: [
         {
             name: { type: String, required: true},
             comment: { type: String, required: true},

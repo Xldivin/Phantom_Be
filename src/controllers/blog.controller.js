@@ -53,15 +53,15 @@ export const commentonBlog = async(req, res) => {
     //console.log(inquiry)
     const blog = await Blog.findById(id);
     if(!blog) return res.status(404).json({status: "fail", message: "blog not found"});
-    blog.comment.push(comment);
+    blog.comments.push(comment);
     await Blog.findByIdAndUpdate(id, {comment});
     blog.save();
-    res.status(201).json({status: "success", message: "comment added"});
+    res.status(201).json({status: "success", message: "comment added",});
 }
 export const getAllComment = async (req, res) => {
     const id = (req.params.id)
     const blog = await Blog.findById(id);
-    const comments = blog.comment;
+    const comments = blog.comments;
     res.status(200).json({status: "success", data: comments})
 }
 export const deleteComment = async (req, res) => {
@@ -69,8 +69,8 @@ export const deleteComment = async (req, res) => {
     const commentId = req.params.commentId
     const blog = await Blog.findById(id);
     console.log(blog);
-    const comments = blog.comment.filter(c => c.id !== commentId);
-    blog.comment = comments
+    const filtercomments = blog.comments.filter(c => c.id !== commentId);
+    blog.comments = filtercomments
     blog.save()
     res.status(200).json({status: "success", data: blog});
 }

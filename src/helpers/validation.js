@@ -2,7 +2,7 @@ import joi from "@hapi/joi";
 
 export const registerValidation = (user) => {
     const schema = joi.object({
-        username: joi.string().min(5).required(),
+        username: joi.string().min(10).required(),
         email: joi.string().email().required(),
         password: joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
         role: joi.string().required()
@@ -12,24 +12,24 @@ export const registerValidation = (user) => {
 
 export const queriesValidation = (query) => {
     const schema = joi.object({
-        Name: joi.string().min(5).required(),
-        Message: joi.string().max(30).required()
+        Name: joi.string().required(),
+        Message: joi.string().max(1000).required()
     });
     return schema.validate(query);
 }
 
 export const blogValidation = (blog) => {
     const schema = joi.object({
-        title: joi.string().min(5).required(),
-        descrption: joi.string().max(1000).required(),
+        title: joi.string().required(),
+        descrption: joi.string().required(),
         image: joi.string()
     });
     return schema.validate(blog);
 }
 export const commentValidation = (comment) => {
     const schema = joi.object({
-        name: joi.string().min(5).required(),
-        comment: joi.string().max(100).required()
+        name: joi.string().required(),
+        comment: joi.string().max(700).required()
     });
     return schema.validate(comment);
 }
