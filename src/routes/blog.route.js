@@ -35,8 +35,8 @@ router.get('/', getAllBlog);
 router.get('/:id', getById);
 router.put('/:id',checkAdminAuth, updateBlog);
 router.delete('/:id',checkAdminAuth, deleteBlogById);
-router.put('/:id/comment',checkAuth, commentonBlog);
-router.get('/:id/comments',checkAuth, getAllComment);
+router.put('/:id/comment', commentonBlog);
+router.get('/:id/comments', getAllComment);
 router.delete('/:id/comments/:commentId', deleteComment);
 
 export default router;

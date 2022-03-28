@@ -2,7 +2,7 @@ import joi from "@hapi/joi";
 
 export const registerValidation = (user) => {
     const schema = joi.object({
-        username: joi.string().min(10).required(),
+        username: joi.string().max(10).required(),
         email: joi.string().email().required(),
         password: joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
         role: joi.string().required()

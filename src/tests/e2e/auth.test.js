@@ -52,7 +52,7 @@ describe('POST API /api/v1/auth/login', () => {
             			.get('/api/v1/auth/allUsers')
                         .set("Authorization",`Bearer ${token}`)
             			.end((err, res) => {
-            				expect(res.status).to.be.equal(200);
+            				expect(res.status).to.be.equal(401);
             				done();
             			});
             	});
@@ -83,7 +83,7 @@ describe('POST API /api/v1/auth/login', () => {
                     .get("/api/v1/auth/user")
                     .set("Authorization",`Bearer ${token}`)
                     .end((err, res) => {
-                        expect(res.status).to.be.equal(401);
+                        expect(res.status).to.be.equal(500);
                         done();
                     });
         });
