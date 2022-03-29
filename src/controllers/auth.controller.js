@@ -52,9 +52,22 @@ export const deleteUser = async (req, res) => {
     await User.findOneAndDelete(user)
     res.status(200).json({ status: "success", message: "User deleted", data: null });
 }
+// export const updateUserProfile = async (req, res) => {
+//     const email = req.body.email;
+//     const user = await User.findOneAndUpdate({ email })
+//     if (!user) return res.status(404).json({ status: 404, message: "User not Found" });
+//     user.username = req.body.username;
+//     user.password = req.body.password;
+//     user.email = req.body.email;
+//     user.save();
+//     res.status(200).json({ status: 200, message: "User Profile Updated Successfully", data: user });
+// }
+
+
+
 export const updateUserProfile = async (req, res) => {
-    const email = req.body.email;
-    const user = await User.findOneAndUpdate({ email })
+    const id = req.params;
+    const user = await User.findOneAndUpdate({ id })
     if (!user) return res.status(404).json({ status: 404, message: "User not Found" });
     user.username = req.body.username;
     user.password = req.body.password;

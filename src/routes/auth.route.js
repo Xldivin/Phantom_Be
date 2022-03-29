@@ -10,7 +10,7 @@ router.post('/login', login_post);
 router.get('/user', userProfile);
 router.get('/allusers',checkAdminAuth, getAllUsers);
 router.delete('/user/:id',checkAdminAuth, deleteUser);
-router.put('/users',checkAuth, updateUserProfile);
+router.put('/users/:id',checkAuth, updateUserProfile);
 
 
 
