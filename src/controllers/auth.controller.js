@@ -28,7 +28,8 @@ export const login_post = async (req, res) => {
     const userdata = ({
         username: user.username,
         role: user.role,
-        email: user.email
+        email: user.email,
+        id: user._id
     })
     const {_id, username, role} = user;
     const token = signToken(JSON.stringify({_id,username,role, email: user.email,}));
