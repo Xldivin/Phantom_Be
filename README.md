@@ -1,11 +1,10 @@
-# <--project-Backend-->
+# <--Flash-Card-Backend-->
 
 ## Description
 
 Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
 
-- I was motivated by the passion i have for programming which pushed me to do this personal website
-- In technology world nowdays you must have the own brand for yourself that is the main reason i have build this personal website.
+- I was motivated by the passion i have for programming which pushed me to do this flashcard backend using graphql
 
 ## Table of Contents
 
@@ -17,13 +16,13 @@ Provide a short description explaining the what, why, and how of your project. U
 
 You must have different tools in your development environment.
 1.you should have nodejs in your environment
-2.you should have api testing tool.
-3.clone the repo [https://github.com/Xldivin/Project-Backend]
+2.clone the repo [https://github.com/Xldivin/flashcard-be]
 
-## Usage
+## Learn More
 
-Provide instructions and examples for use. Include screenshots as needed.
-this personal website have many features you must visit it first there are where you can leave the queries for the admin also there are where you can login and be a member also they are different blogs  you can visit
+You can learn more in the [GraphQl](https://www.howtographql.com/typescript-apollo/0-introduction/).
+
+To learn React, check out the [React documentation](https://nodejs.org/en/).
 
 ## Credits
 
@@ -34,16 +33,14 @@ Also my teammates in Elite team (andela)
 ## Features
 
 1.Sign up and Login
-2. Dynamic Blog pages.
-3. have a particular blog
-4. You can add/make as many blogs you want.
-5. you have a landing page
-6. you can also have a own dashboard as a standard-user
+2. all flashcards.
+3. one flahcard
+4. You can add flashcards.
+5. you can delete a flashcard
+6. you can update flashcards
 
 ## How to Contribute
 
 you can contribute by visiting the website and leaving the message for the admin.
 
-## Tests
 
--- yarn run test
